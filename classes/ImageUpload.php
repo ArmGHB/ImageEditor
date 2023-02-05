@@ -14,16 +14,15 @@ class ImageUpload extends Images
     private string $uploads_folder = "./uploads/";
     private array $allowed_image_types = ["image/jpeg", "image/jpg", "image/png"];
     private int $upload_max_size = 2*1024*1024;
+    public array $effects;
     public ?string $error;
 
     /**
      * @param ImageModel $image_model
      * @param Effects $effects
      * @param array $image
-     * @param string $effect_type
-     * @param array $effect_settings
      */
-    public function __construct(ImageModel $image_model, Effects $effects, array $images, string $effect_type, array $effect_settings){
+    public function __construct(ImageModel $image_model, Effects $effects, array $images){
 
         parent::__construct($image_model);
         
@@ -34,7 +33,9 @@ class ImageUpload extends Images
             $this->image_size = $image['image']['size'];
             $this->image_temp = $image['image']['tmp_name'];
             $this->image_type = $image['image']['type'];
+            $this->effects = $image['effects'];
 
+           
             $this->isImage();
             //$this->sizeValidation();
 
@@ -42,8 +43,8 @@ class ImageUpload extends Images
             if($this->error == null){
                 $this->moveFile();
                 $effects->setImage($this->uploads_folder . $this->image_name);
-                $effects->setEffectType($effect_type);
-                $effects->applyEffect($effect_settings);
+                $effects->setEffects($this->effects);
+                $effects->applyEffects();
             }
         
         }
