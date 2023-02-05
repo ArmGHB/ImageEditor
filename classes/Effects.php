@@ -9,7 +9,7 @@ class Effects
     public array $effects = [];
 
     /**
-     * @param array $effect_types
+     * @param array $effects
      */
     public function setEffects(array $effects): void
     {
@@ -26,9 +26,8 @@ class Effects
     
     /**
      * @param string $effect
-     * @return string[]
      */
-    public function apply(string $effect){
+    public function apply(string $effect): void{
         // TODO: Implement apply method.
     }
 
