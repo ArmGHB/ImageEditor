@@ -26,7 +26,7 @@ class ImageUpload extends Images
 
         parent::__construct($image_model);
         
-        foreach($images as $image)
+        foreach($images as $image){
 
             //image properties
             $this->image_name = $image['image']['name'];
