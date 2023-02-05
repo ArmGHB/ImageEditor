@@ -6,22 +6,39 @@ namespace classes;
 class Effects
 {
     public string $image_path;
-    public string $effect_type;
+    public array $effects = [];
 
     /**
-     * @param string $effect_type
+     * @param array $effect_types
      */
-    public function setEffectType(string $effect_type): void
+    public function setEffects(array $effects): void
     {
-        $this->effect_type = $effect_type;
+        $this->effects = $effects;
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getEffectType(): string
+    public function getEffects(): array
     {
-        return $this->effect_type;
+        return $this->effects;
+    }
+    
+    /**
+     * @param string $effect
+     * @return string[]
+     */
+    public function apply(string $effect){
+        // TODO: Implement apply method.
+    }
+
+    /*
+     * @return void
+     */
+    public function applyEffects(): void{
+        foreach($this->effects as $effect){
+            $this->apply($effect);
+        }
     }
 
     /**
@@ -71,12 +88,5 @@ class Effects
         ];
         return $settings[$effect];
     }
-
-    /**
-     * @param array $effect_settings
-     * @return void
-     */
-    public function applyEffect(array $effect_settings): void{
-        // TODO: Implement applyEffect method.
-    }
+   
 }
