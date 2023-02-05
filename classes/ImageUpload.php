@@ -23,9 +23,11 @@ class ImageUpload extends Images
      * @param string $effect_type
      * @param array $effect_settings
      */
-    public function __construct(ImageModel $image_model, Effects $effects, array $image, string $effect_type, array $effect_settings){
+    public function __construct(ImageModel $image_model, Effects $effects, array $images, string $effect_type, array $effect_settings){
 
         parent::__construct($image_model);
+        
+        foreach($images as $image)
 
             //image properties
             $this->image_name = $image['image']['name'];
@@ -43,6 +45,8 @@ class ImageUpload extends Images
                 $effects->setEffectType($effect_type);
                 $effects->applyEffect($effect_settings);
             }
+        
+        }
 
     }
 
